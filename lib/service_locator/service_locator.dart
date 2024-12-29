@@ -1,3 +1,4 @@
+import 'package:class_assignment_2/bloc/simple_interest/simple_interest_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../bloc/area_circle/area_circle_bloc.dart';
@@ -5,12 +6,18 @@ import '../bloc/dashboard_bloc.dart';
 
 final serviceLocator = GetIt.instance;
 
-Future<void> initDependencies() async{
+Future<void> initDependencies() async {
   _initBloc();
 }
 
-void _initBloc(){
-  serviceLocator.registerLazySingleton(()=> AreaCircleBloc());
-  serviceLocator.registerFactory(() => DashboardBloc(serviceLocator<AreaCircleBloc>()));
+void _initBloc() {
+  // Individual Blocs
+  serviceLocator.registerLazySingleton(() => AreaCircleBloc());
+  serviceLocator.registerLazySingleton(() => SimpleInterestBloc());
 
+  // DashboardBloc to pass AreaCircleBloc and SimpleInterestBloc
+  serviceLocator.registerFactory(() => DashboardBloc(
+    serviceLocator<AreaCircleBloc>(),
+    serviceLocator<SimpleInterestBloc>(),
+  ));
 }
