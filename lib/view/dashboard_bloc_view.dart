@@ -52,6 +52,7 @@ class DashboardBlocView extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
+                context.read<DashboardBloc>().openStudentView(context);
 
               },
               child: Column(
