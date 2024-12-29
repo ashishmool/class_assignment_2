@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/simple_interest/simple_interest_bloc.dart';
-import '../bloc/simple_interest/simple_interest_event.dart';
 
 class SimpleInterestView extends StatefulWidget {
   const SimpleInterestView({super.key});
@@ -95,10 +94,10 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
                   onPressed: () {
                     // Dispatch the calculation directly using the emit method
                     context.read<SimpleInterestBloc>().calculateInterest(
-                      principal,
-                      rate,
-                      time,
-                    );
+                          principal,
+                          rate,
+                          time,
+                        );
                   },
                   child: const Text('Calculate Interest'),
                 ),
